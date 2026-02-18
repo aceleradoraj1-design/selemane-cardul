@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio Profissional - Selemane Cardula</title>
+<style>
+:root {
+    --primary: #d92f2f;
+    --secondary: #1f1f1f;
+    --bg: #f7f7fb;
+    --card: #ffffff;
+    --muted: #6b7280;
+    --transition: 0.5s;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--secondary);
+    scroll-behavior: smooth;
+}
+
+a { text-decoration:none; color: inherit; }
+
+header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding: 20px 40px;
+    background: linear-gradient(90deg, var(--primary), #ff7a7a);
+    color:white;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+header .logo { font-weight:700; font-size:24px; }
+nav { display:flex; gap:15px; }
+nav a {
+    color:white; font-weight:600; padding:8px 12px; border-radius:6px; transition:0.3s;
+}
+nav a:hover { background: rgba(255,255,255,0.2); }
+
+section { padding:80px 20px; max-width:1200px; margin:0 auto; opacity:0; transform: translateY(30px); transition: all 1s ease; }
+section.visible { opacity:1; transform: translateY(0); }
+
+h2.section-title { font-size:32px; margin-bottom:30px; text-align:center; color: var(--primary); position: relative; }
+h2.section-title::after {
+    content: ''; display: block; width: 60px; height: 4px; background: var(--primary); margin:10px auto 0; border-radius:2px;
+}
+
+.hero {
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:120px 20px; background:#fff; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.1); margin-bottom:60px;
+}
+
+.hero img { width:180px; height:180px; border-radius:50%; object-fit:cover; margin-bottom:20px; border:4px solid var(--primary); }
+.hero h1 { font-size:44px; margin-bottom:10px; }
+.hero p { color: var(--muted); font-size:18px; max-width:600px; line-height:1.6; }
+
+.about { display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; }
+.about img { width:100%; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.1); transition: transform var(--transition); }
+.about img:hover { transform: scale(1.05); }
+
+.skills, .languages { display:flex; flex-direction:column; gap:15px; }
+
+.skill { display:flex; flex-direction:column; }
+.skill span { font-weight:600; margin-bottom:5px; }
+.skill-bar { height:14px; background:#ddd; border-radius:7px; overflow:hidden; }
+.skill-bar-inner { height:100%; background:var(--primary); width:0; transition: width 1s ease; }
+
+.language { display:flex; justify-content:space-between; font-weight:600; }
+
+.projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; }
+.project-card { background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.1); transition: transform var(--transition), box-shadow var(--transition); opacity:0; transform:translateY(30px); cursor:pointer; }
+.project-card.visible { opacity:1; transform:translateY(0); }
+.project-card:hover { transform:translateY(-8px); box-shadow:0 12px 36px rgba(0,0,0,0.2); }
+.project-card img { width:100%; height:180px; object-fit:cover; }
+.project-card .content { padding:15px; }
+.project-card h3 { margin-bottom:10px; color:var(--primary); }
+.project-card p { font-size:14px; color:var(--muted); }
+
+.services { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:25px; }
+.service-card { background:#fff; padding:25px; border-radius:12px; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,0.1); transition: transform var(--transition), box-shadow var(--transition); opacity:0; transform:translateY(30px); }
+.service-card.visible { opacity:1; transform:translateY(0); }
+.service-card:hover { transform:translateY(-6px); box-shadow:0 12px 36px rgba(0,0,0,0.2); }
+.service-card h3 { margin-bottom:10px; color: var(--primary); }
+.service-card p { color: var(--muted); font-size:14px; }
+
+.contact { text-align:center; }
+.contact p { margin-bottom:15px; font-weight:600; color:var(--secondary); }
+.contact form { display:flex; flex-direction:column; gap:15px; max-width:500px; margin:0 auto; opacity:0; transform: translateY(30px); transition: all 1s ease; }
+.contact form.visible { opacity:1; transform: translateY(0); }
+.contact input, .contact textarea { padding:12px; border-radius:8px; border:1px solid #ddd; font-size:14px; }
+.contact button { background:var(--primary); color:white; border:0; padding:14px; font-weight:600; border-radius:8px; cursor:pointer; transition: all 0.3s; }
+.contact button:hover { background:#ff7a7a; }
+
+.socials { display:flex; gap:15px; justify-content:center; margin-top:15px; }
+.socials a { font-size:20px; color:var(--primary); transition:0.3s; }
+.socials a:hover { color:#ff7a7a; }
+
+footer { text-align:center; padding:20px; color:var(--muted); margin-top:60px; }
+
+@media(max-width:900px){ .about {grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Selemane Cardula</div>
+    <nav>
+        <a href="#hero">Home</a>
+        <a href="#about">Sobre</a>
+        <a href="#projects">Projetos</a>
+        <a href="#services">Serviços</a>
+        <a href="#contact">Contato</a>
+    </nav>
+</header>
+
+<section id="hero" class="hero">
+    <img src="IMG-20260114-WA0008.jpg" alt="Foto do Portfólio">
+    <h1>Selemane Cardula</h1>
+    <p>Desenvolvedor Web & Designer Gráfico. Transformando ideias em projetos digitais modernos e funcionais.</p>
+</section>
+
+<section id="about" class="about">
+    <img src="perfil2.jpg" alt="Sobre mim">
+    <div>
+        <h2 class="section-title">Sobre Mim</h2>
+        <p>Sou apaixonado por desenvolvimento web moderno, design responsivo e experiências de usuário intuitivas. Trabalho criando soluções digitais que impactam positivamente os usuários.</p>
+
+        <div class="skills">
+            <h3>Habilidades Técnicas</h3>
+            <div class="skill"><span>HTML / CSS / JS</span><div class="skill-bar"><div class="skill-bar-inner" style="width:90%"></div></div></div>
+            <div class="skill"><span>React / Vue</span><div class="skill-bar"><div class="skill-bar-inner" style="width:75%"></div></div></div>
+            <div class="skill"><span>Design Gráfico</span><div class="skill-bar"><div class="skill-bar-inner" style="width:85%"></div></div></div>
+        </div>
+
+        <div class="languages">
+            <h3>Idiomas</h3>
+            <div class="language">Português: <strong>100%</strong></div>
+            <div class="language">Inglês: <strong>85%</strong></div>
+            <div class="language">Changana: <strong>95%</strong></div>
+        </div>
+
+        <div class="socials">
+            <a href="#" target="_blank">LinkedIn</a>
+            <a href="#" target="_blank">GitHub</a>
+            <a href="#" target="_blank">Instagram</a>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <h2 class="section-title">Meus Projetos</h2>
+    <div class="projects">
+        <div class="project-card"><img src="projeto1.jpg"><div class="content"><h3>Site Institucional</h3><p>Site corporativo moderno e responsivo.</p></div></div>
+        <div class="project-card"><img src="projeto2.jpg"><div class="content"><h3>Loja Online</h3><p>E-commerce completo com checkout e pagamentos integrados.</p></div></div>
+        <div class="project-card"><img src="projeto3.jpg"><div class="content"><h3>Blog Pessoal</h3><p>Blog otimizado para SEO com layout limpo e responsivo.</p></div></div>
+    </div>
+</section>
+
+<section id="services">
+    <h2 class="section-title">Serviços</h2>
+    <div class="services">
+        <div class="service-card"><h3>Web Design</h3><p>Layouts modernos e responsivos para sites e apps.</p></div>
+        <div class="service-card"><h3>Desenvolvimento</h3><p>Sistemas web usando tecnologias atuais e boas práticas.</p></div>
+        <div class="service-card"><h3>Design Gráfico</h3><p>Identidade visual, logos, banners e materiais digitais.</p></div>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <h2 class="section-title">Contato</h2>
+    <p>Email: <a href="mailto:selemane@example.com">selemane@example.com</a> | Telefone: +258 842 490 129</p>
+    <form onsubmit="alert('Mensagem enviada!'); return false;">
+        <input type="text" placeholder="Nome" required>
+        <input type="email" placeholder="Email" required>
+        <textarea placeholder="Mensagem" rows="5" required></textarea>
+        <button type="submit">Enviar Mensagem</button>
+    </form>
+</section>
+
+<footer>© <span id="year"></span> Selemane Cardula</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const sections = document.querySelectorAll('section, .hero, .project-card, .service-card, .contact form');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, {threshold:0.2});
+sections.forEach(sec => observer.observe(sec));
+</script>
+
+</body>
+</html>
